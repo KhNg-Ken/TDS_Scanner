@@ -25,4 +25,6 @@ yarn-error.log*
 
 # NDK/CMake intermediate files
 /android/app/.cxx
+
+--- IGNORE ---
 .env
