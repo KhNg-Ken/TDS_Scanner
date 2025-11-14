@@ -19,6 +19,27 @@ CI
 
 CI notes
 
-- The included workflow at `.github/workflows/ci-java21.yml` now installs Android SDK packages required for a Gradle Android build when running on GitHub-hosted `ubuntu-latest` runners (it uses `reactivecircus/android-emulator-runner` to provision SDK/platform-tools/build-tools and accept licenses).
+- The CI workflow no longer provisions an emulator. It still sets up Java 21 and runs the Gradle Android build.
+
+Run on a physical device (recommended for camera apps)
+
+- Android (recommended):
+	1. Connect your Android device via USB and enable Developer Options + USB Debugging.
+	2. From the project root, run:
+
+```bash
+npx expo run:android
+```
+
+	- This builds a development client and installs it on the connected device. Once installed, start Metro with `npx expo start` and scan the QR code or use `--tunnel` if your device is on a different network.
+
+- iOS (recommended for camera testing on iPhone):
+	- On macOS with Xcode installed, connect your device and run:
+
+```bash
+npx expo run:ios
+```
+
+	- Alternatively build a dev-client or TestFlight build if you prefer.
 
 If you want me to also pin `org.gradle.java.home` in `android/gradle.properties` or customize the workflow to install specific Android SDK components, tell me and I'll apply those changes.

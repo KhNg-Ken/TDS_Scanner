@@ -22,20 +22,10 @@ jobs:
       - name: Verify Java
         run: java -version
 
-      - name: Set up Android SDK (install platform-tools, build-tools and platforms)
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 36
-          arch: x86_64
-          target: default
-          force-avd-creation: false
-          emulator-options: -no-window
-
-      - name: Confirm Android SDK
-        run: |
-          echo "ANDROID_HOME: $ANDROID_HOME"
-          adb --version || true
-          sdkmanager --list || true
+      # NOTE: Emulator provisioning intentionally removed. If you need the
+      # Android SDK preinstalled on CI runners, add a dedicated SDK setup
+      # step here (for example using an SDK setup action) — the Gradle build
+      # step below assumes required SDK components are available on the runner.
 
       - name: Run Gradle assembleDebug
         working-directory: ./android
