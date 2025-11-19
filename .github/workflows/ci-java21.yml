@@ -1,44 +1,44 @@
 name: CI - Java 21 Build
 
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+    push:
+        branches: [main, master]
+    pull_request:
+        branches: [main, master]
 
 jobs:
-  build-java:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    build-java:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v4
-        with:
-          java-version: '21'
-          distribution: 'temurin'
+            - name: Set up JDK 21
+              uses: actions/setup-java@v4
+              with:
+                  java-version: '21'
+                  distribution: 'temurin'
 
-      - name: Verify Java
-        run: java -version
+            - name: Verify Java
+              run: java -version
 
-      # NOTE: Emulator provisioning intentionally removed. If you need the
-      # Android SDK preinstalled on CI runners, add a dedicated SDK setup
-      # step here (for example using an SDK setup action) — the Gradle build
-      # step below assumes required SDK components are available on the runner.
+            # NOTE: Emulator provisioning intentionally removed. If you need the
+            # Android SDK preinstalled on CI runners, add a dedicated SDK setup
+            # step here (for example using an SDK setup action) — the Gradle build
+            # step below assumes required SDK components are available on the runner.
 
-      - name: Run Gradle assembleDebug
-        working-directory: ./android
-        run: |
-          chmod +x ./gradlew
-          ./gradlew assembleDebug --no-daemon
+            - name: Run Gradle assembleDebug
+              working-directory: ./android
+              run: |
+                  chmod +x ./gradlew
+                  ./gradlew assembleDebug --no-daemon
 
-      - name: Upload build outputs (artifact)
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: android-build-artifacts
-          path: android/app/build/outputs/
+            - name: Upload build outputs (artifact)
+              if: success()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: android-build-artifacts
+                  path: android/app/build/outputs/
 # Note:
 # - This workflow configures the runner JVM to Java 21. Building Android apps
 #   on GitHub-hosted runners usually requires Android SDK components and

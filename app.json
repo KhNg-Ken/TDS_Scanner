@@ -1,5 +1,12 @@
 {
-  "android": {
-    "package": "com.anonymous.qrscanner"
-  }
+    "android": {
+        "package": "com.anonymous.qrscanner"
+    },
+    "expo": {
+        "extra": {
+            "MS_CLIENT_ID": "9d66545b-e67c-48ab-9f12-8ca0c766b107",
+            "MS_TENANT_ID": "2b91fcd7-b2fa-4e3a-8757-c29ba322e444",
+            "REDIRECT_URI": "https://login.microsoftonline.com/"
+        }
+    }
 }

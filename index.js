@@ -4,11 +4,11 @@ import App from './App';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 function Main() {
-  return (
-    <SafeAreaProvider>
-      <App />
-    </SafeAreaProvider>
-  );
+    return (
+        <SafeAreaProvider>
+            <App />
+        </SafeAreaProvider>
+    );
 }
 
 // Register the main component of the app
